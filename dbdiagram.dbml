@@ -1,0 +1,54 @@
+Project Portfolio {
+    database_type: 'mysql'
+    note: 'Database for my personal blog and portfolio website (combine with Laravel migration).'
+}
+
+Table categories {
+    id uuid [pk]
+    name json
+    slug varchar(225) [unique]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table posts {
+    id uuid [pk]
+    category_id uuid [ref: > categories.id]
+    title json
+    slug varchar(225) [unique]
+    thumbnail varchar(225)
+    sub_content json
+    content json
+    published_at timestamp [default: null]
+    created_at timestamp
+    updated_at timestamp
+    deleted_at timestamp [default: null]
+}
+
+Table tags {
+    id uuid [pk]
+    name varchar(50)
+    slug varchar(100) [unique]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table post_tags {
+    post_id uuid [ref: > posts.id]
+    tag_id uuid [ref: > tags.id]
+}
+
+Table subscriber {
+    id uuid [pk]
+    email varchar(225) [unique]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table diaries {
+    id uuid [pk]
+    title varchar(225)
+    content text
+    created_at timestamp
+    updated_at timestamp
+}

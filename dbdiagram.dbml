@@ -6,7 +6,7 @@ Project Portfolio {
 Table categories {
     id uuid [pk]
     name json
-    slug varchar(225) [unique]
+    slug json
     created_at timestamp
     updated_at timestamp
 }
@@ -15,8 +15,8 @@ Table posts {
     id uuid [pk]
     category_id uuid [ref: > categories.id]
     title json
-    slug varchar(225) [unique]
-    thumbnail varchar(225)
+    slug json
+    thumbnail varchar(225) [default: null]
     sub_content json
     content json
     published_at timestamp [default: null]
